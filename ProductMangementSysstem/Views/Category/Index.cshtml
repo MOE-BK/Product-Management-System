@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ProductMangementSysstem.Models.Category>
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between mb-4">
+        <h1>Categories</h1>
+
+        <a asp-action="Create" class="btn btn-primary">
+            Create Category
+        </a>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+
+    <table class="table table-bordered">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var category in Model)
+            {
+                <tr>
+                    <td>@category.Id</td>
+                    <td>@category.Name</td>
+
+                    <td>
+                        <a asp-action="Edit"
+                           asp-route-id="@category.Id"
+                           class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+
+                        <a asp-action="Delete"
+                           asp-route-id="@category.Id"
+                           class="btn btn-danger btn-sm">
+                            Delete
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
